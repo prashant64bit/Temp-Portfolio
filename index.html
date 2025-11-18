@@ -3,306 +3,316 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>shortageofname | Portfolio</title>
-  <meta name="description" content="Portfolio of shortageofname - Full-Stack Developer & Security Enthusiast" />
+  <title>shortageofname</title>
+  <meta name="description" content="Security Researcher • Developer • Open Source" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #f0f2f6;
       --text: #1e293b;
-      --card: #ffffff;
-      --border: #e2e8f0;
-      --primary: #3b82f6;
-      --shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --card: rgba(255, 255, 255, 0.7);
+      --glass: rgba(255, 255, 255, 0.25);
+      --border: rgba(255, 255, 255, 0.3);
+      --primary: #6366f1;
+      --accent: #8b5cf6;
     }
     [data-theme="dark"] {
-      --bg: #0f172a;
+      --bg: #0f0f23;
       --text: #e2e8f0;
-      --card: #1e293b;
-      --border: #334155;
-      --primary: #60a5fa;
-      --shadow: 0 10px 15px -3px rgba(0,0,0,0.4);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: all 0.3s ease;
-      min-height: 100vh;
+      --card: rgba(30, 30, 60, 0.6);
+      --glass: rgba(30, 30, 60, 0.4);
+      --border: rgba(100, 100, 255, 0.2);
+      --primary: #818cf8;
+      --accent: #c084fc;
     }
 
-    /* Perfectly aligned top-right floating bar */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 20%);
+      min-height: 100vh;
+      transition: all 0.4s ease;
+    }
+
+    /* Animated gradient header */
+    header {
+      position: relative;
+      padding: 7rem 1rem 5rem;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #6366f1, #8b5cf6, #a855f7, #d946ef);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: white;
+    }
+    @keyframes gradient {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glass effect over header */
+    .hero-glass {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin: 0 auto;
+      max-width: 800px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
     .top-bar {
       position: fixed;
       top: 20px;
       right: 20px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      background: rgba(255,255,255,0.15);
+      gap: 14px;
+      background: var(--glass);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.2);
       padding: 12px 20px;
       border-radius: 50px;
+      border: 1px solid var(--border);
       z-index: 1000;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     }
     .top-bar a, .top-bar button {
-      color: var(--text);
-      font-size: 1.35rem;
+      color: white;
+      font-size: 1.3rem;
       background: none;
       border: none;
       cursor: pointer;
-      opacity: 0.8;
-      transition: all 0.25s ease;
-      width: 40px;
-      height: 40px;
+      width: 42px; height: 42px;
       display: grid;
       place-items: center;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
     .top-bar a:hover, .top-bar button:hover {
-      opacity: 1;
-      transform: translateY(-3px) scale(1.1);
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.15);
     }
-    .top-bar button i { transition: 0.4s; }
 
-    header {
-      text-align: center;
-      padding: 6rem 1rem 3rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 120px;
-      background: var(--bg);
-      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-    .profile { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
     .avatar {
-      width: 160px; height: 160px; border-radius: 50%;
-      border: 6px solid rgba(255,255,255,0.3);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     }
-    h1 { font-size: 2.8rem; margin: 0.5rem 0; }
-    .bio { font-size: 1.3rem; opacity: 0.9; max-width: 700px; }
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin: 1rem 0 0.5rem;
+      background: linear-gradient(90deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bio {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-    main { padding: 4rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.5rem;
-      margin-bottom: 3rem;
+      margin: 4rem 0;
     }
     .stat-card {
       background: var(--card);
-      padding: 1.5rem;
-      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      padding: 1.8rem;
+      border-radius: 20px;
       text-align: center;
-      box-shadow: var(--shadow);
       border: 1px solid var(--border);
       transition: transform 0.3s;
     }
-    .stat-card:hover { transform: translateY(-8px); }
-    .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
-    .stat-label { color: #64748b; font-size: 0.9rem; margin-top: 0.5rem; }
+    .stat-card:hover { transform: translateY(-10px); }
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
 
     .repos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
     }
     .repo-card {
       background: var(--card);
-      border-radius: 16px;
-      padding: 1.6rem;
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 1.8rem;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: all 0.3s;
+      transition: all 0.4s;
       display: flex;
       flex-direction: column;
       height: 100%;
     }
     .repo-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     }
     .repo-name {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: var(--primary);
       text-decoration: none;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
     .repo-name:hover { text-decoration: underline; }
     .repo-desc {
-      color: #64748b;
-      margin: 1rem 0 1.5rem;
-      font-size: 0.95rem;
       flex-grow: 1;
-      min-height: 60px;
+      color: #64748b;
+      margin: 1rem 0;
+      line-height: 1.6;
     }
     .repo-meta {
       display: flex;
-      align-items: center;
       gap: 1rem;
-      font-size: 0.85rem;
-      color: #64748b;
+      font-size: 0.9rem;
+      color: #94a3b8;
       margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
     }
     .language-color {
-      width: 12px;
-      height: 12px;
+      width: 14px; height: 14px;
       border-radius: 50%;
       display: inline-block;
-    }
-    .loading, .error {
-      text-align: center;
-      padding: 4rem;
-      font-size: 1.2rem;
-      color: #94a3b8;
-      grid-column: 1 / -1;
-    }
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #64748b;
-      font-size: 0.9rem;
+      vertical-align: middle;
     }
 
-    @media (max-width: 640px) {
-      .top-bar {
-        top: 12px;
-        right: 12px;
-        padding: 10px 14px;
-        gap: 12px;
-      }
-      .top-bar a, .top-bar button { font-size: 1.2rem; width: 36px; height: 36px; }
-      h1 { font-size: 2.3rem; }
-      .avatar { width: 120px; height: 120px; }
+    footer {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .avatar { width: 140px; height: 140px; }
+      .top-bar { padding: 10px 16px; gap: 12px; }
+      .top-bar a, .top-bar button { font-size: 1.2rem; width: 38px; height: 38px; }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Perfectly aligned top bar with all icons + theme toggle -->
   <div class="top-bar">
-    <a href="https://github.com/shortageofname" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/in/shortageofname" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://tryhackme.com/p/shortageofname" target="_blank" aria-label="TryHackMe"><i class="fas fa-shield-alt"></i></a>
-    <a href="mailto:your-email@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-    <button id="themeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+    <a href="https://github.com/shortageofname" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/shortageofname" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://tryhackme.com/p/shortageofname" target="_blank"><i class="fas fa-shield-alt"></i></a>
+    <a href="mailto:yourmail@gmail.com"><i class="fas fa-envelope"></i></a>
+    <button id="themeToggle"><i class="fas fa-moon"></i></button>
   </div>
 
   <header>
-    <div class="container">
-      <div class="profile">
-        <img id="avatar" class="avatar" src="" alt="Profile" />
-        <h1 id="name">shortageofname</h1>
-        <p class="bio" id="bio">Loading bio...</p>
-      </div>
+    <div class="glass">
+      <img id="avatar" class="avatar" src="" alt="shortageofname" />
+      <h1 id="name">shortageofname</h1>
+      <p class="bio" id="bio">Loading...</p>
     </div>
   </header>
 
   <div class="container">
-    <main>
-      <div class="stats" id="stats">
-        <div class="stat-card"><div class="stat-number" id="reposCount">-</div><div class="stat-label">Repositories</div></div>
-        <div class="stat-card"><div class="stat-number" id="starsCount">-</div><div class="stat-label">Total Stars</div></div>
-        <div class="stat-card"><div class="stat-number" id="followers">-</div><div class="stat-label">Followers</div></div>
-      </div>
+    <div class="stats" id="stats">
+      <div class="stat-card"><div class="stat-number" id="reposCount">-</div><div>Repositories</div></div>
+      <div class="stat-card"><div class="stat-number" id="starsCount">-</div><div>Total Stars</div></div>
+      <div class="stat-card"><div class="stat-number" id="followers">-</div><div>Followers</div></div>
+    </div>
 
-      <h2 style="font-size: 2rem; margin: 3rem 0 2rem; text-align:center;">My Projects</h2>
-      <div class="repos-grid" id="reposGrid">
-        <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading repositories...</div>
+    <h2 style="text-align:center; font-size:2.2rem; margin:3rem 0 2.5rem; color:var(--text);">Projects</h2>
+    <div class="repos-grid" id="reposGrid">
+      <div style="grid-column:1/-1; text-align:center; padding:4rem; color:#94a3b8;">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
       </div>
-    </main>
+    </div>
   </div>
 
   <footer>
-    <p>Made with love by shortageofname</p>
+    <p>© 2025 shortageofname — Built with pure HTML & love</p>
   </footer>
 
   <script>
-    const GITHUB_USERNAME = "shortageofname";
-    const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}`;
-    const REPOS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
+    const username = "shortageofname";
+    const api = `https://api.github.com/users/${username}`;
+    const reposApi = `${api}/repos?per_page=100&sort=updated`;
 
-    // Theme toggle inside the bar
-    const themeBtn = document.getElementById('themeToggle');
+    // Theme
+    const btn = document.getElementById('themeToggle');
     if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
-      themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+      btn.innerHTML = '<i class="fas fa-sun"></i>';
     }
-    themeBtn.addEventListener('click', () => {
+    btn.onclick = () => {
       if (document.documentElement.hasAttribute('data-theme')) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
-        themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        btn.innerHTML = '<i class="fas fa-moon"></i>';
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
-        themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        btn.innerHTML = '<i class="fas fa-sun"></i>';
       }
-    });
-
-    const languageColors = {
-      JavaScript: "#f1e05a", TypeScript: "#2b7489", Python: "#3572A5",
-      HTML: "#e34c26", CSS: "#563d7c", Java: "#b07219", Go: "#00ADD8",
-      Rust: "#dea584", React: "#61dafb", Vue: "#41b883", Svelte: "#ff3e00"
     };
 
-    async function fetchGitHubData() {
+    const colors = { JavaScript:"#f1e05a", TypeScript:"#2b7489", Python:"#3572A5", Go:"#00ADD8", Rust:"#dea584", HTML:"#e34c26", CSS:"#563d7c" };
+
+    async function load() {
       try {
-        const [userRes, reposRes] = await Promise.all([fetch(API_URL), fetch(REPOS_URL)]);
-        const user = await userRes.json();
-        const repos = await reposRes.json();
+        const [user, repos] = await Promise.all([fetch(api), fetch(reposApi)]).then(rs => Promise.all(rs.map(r => r.json())));
 
         document.getElementById('avatar').src = user.avatar_url;
         document.getElementById('name').textContent = user.name || user.login;
-        document.getElementById('bio').textContent = user.bio || "Security enthusiast & developer";
+        document.getElementById('bio').textContent = user.bio || "Security enthusiast • Developer • CTF player";
 
         document.getElementById('reposCount').textContent = user.public_repos;
         document.getElementById('followers').textContent = user.followers;
-        const totalStars = repos.reduce((acc, r) => acc + r.stargazers_count, 0);
-        document.getElementById('starsCount').textContent = totalStars;
+        document.getElementById('starsCount').textContent = repos.reduce((a,b)=>a+b.stargazers_count,0);
 
-        const reposGrid = document.getElementById('reposGrid');
-        reposGrid.innerHTML = '';
+        const grid = document.getElementById('reposGrid');
+        grid.innerHTML = '';
 
         repos
           .filter(r => !r.fork)
-          .sort((a, b) => b.stargazers_count - a.stargazers_count)
-          .forEach(repo => {
-            const lang = repo.language || "Other";
-            const color = languageColors[lang] || "#888";
-
+          .sort((a,b) => b.stargazers_count - a.stargazers_count)
+          .forEach(r => {
+            const lang = r.language || "";
+            const color = colors[lang] || "#888";
             const card = document.createElement('div');
             card.className = 'repo-card';
             card.innerHTML = `
-              <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
-              <p class="repo-desc">${repo.description || "No description provided."}</p>
+              <a href="${r.html_url}" target="_blank" class="repo-name">${r.name}</a>
+              <p class="repo-desc">${r.description || "No description"}</p>
               <div class="repo-meta">
-                ${repo.language ? `<span><span class="language-color" style="background:${color}"></span> ${lang}</span>` : ''}
-                <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                ${lang ? `<span><span class="language-color" style="background:${color}"></span> ${lang}</span>` : ''}
+                <span><i class="fas fa-star"></i> ${r.stargazers_count}</span>
+                <span><i class="fas fa-code-branch"></i> ${r.forks_count}</span>
               </div>
             `;
-            reposGrid.appendChild(card);
+            grid.appendChild(card);
           });
-
-      } catch (err) {
-        document.getElementById('reposGrid').innerHTML = `<div class="error">Failed to load. Try later.</div>`;
+      } catch(e) {
+        document.getElementById('reposGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;color:#94a3b8;">Failed to load data — try later</div>`;
       }
     }
 
-    fetchGitHubData();
+    load();
   </script>
 </body>
 </html>
