@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -30,7 +30,6 @@
       transition: all 0.4s ease;
     }
 
-    /* ANIMATED PURPLE HEADER */
     header {
       padding: 6rem 2rem 4rem;
       text-align: center;
@@ -44,8 +43,7 @@
     }
 
     .avatar {
-      width: 140px;
-      height: 140px;
+      width: 140px; height: 140px;
       border-radius: 50%;
       border: 6px solid rgba(255,255,255,0.3);
       margin-bottom: 1.5rem;
@@ -80,7 +78,6 @@
     }
     .resume-btn:hover { transform: translateY(-5px); }
 
-    /* TOP BAR */
     .top-bar {
       position: fixed;
       top: 24px;
@@ -147,7 +144,7 @@
       margin: 0 auto 5rem;
     }
 
-    /* SKILLS WITH ANIMATED PROGRESS BARS */
+    /* FIXED: All progress bars same size & animated */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -162,9 +159,7 @@
       display: flex;
       align-items: center;
       gap: 1.2rem;
-      transition: transform 0.3s;
     }
-    .skill-item:hover { transform: translateY(-8px); }
     .skill-icon {
       font-size: 2.8rem;
       color: var(--primary);
@@ -175,17 +170,18 @@
       font-size: 1.2rem;
     }
     .progress-bar {
-      height: 10px;
-      background: rgba(255,255,255,0.1);
+      height: 12px;
+      background: rgba(255,255,255,0.15);
       border-radius: 10px;
       overflow: hidden;
+      flex: 1;
     }
     .progress {
       height: 100%;
       background: linear-gradient(90deg, #8b5cf6, #c084fc);
-      width: 0;
+      width: 0%;
       border-radius: 10px;
-      transition: width 1.8s ease-out;
+      transition: width 2s ease-out;
     }
 
     .certs-grid, .repos-grid {
@@ -210,6 +206,7 @@
 </head>
 <body>
 
+  <!-- Your Correct Links + Working Theme Button -->
   <div class="top-bar">
     <a href="https://github.com/shortageofname" target="_blank"><i class="fab fa-github"></i></a>
     <a href="https://linkedin.com/in/prashant-cybersecurity" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -218,7 +215,6 @@
     <button id="themeToggle"><i class="fas fa-sun"></i></button>
   </div>
 
-  <!-- CLEAN HERO - NO GLASS -->
   <header>
     <img src="https://avatars.githubusercontent.com/u/149857084?v=4" class="avatar" alt="Prashant Thakur">
     <h1>Prashant Thakur</h1>
@@ -228,52 +224,48 @@
 
   <div class="container">
 
-    <!-- Stats -->
     <div class="stats" id="stats">
-      <div class="stat-card"><div class="stat-number" id="reposCount">-</div><div>Repositories</div></div>
-      <div class="stat-card"><div class="stat-number" id="starsCount">-</div><div>Total Stars</div></div>
-      <div class="stat-card"><div class="stat-number" id="followers">-</div><div>Followers</div></div>
+      <div class="stat-card"><div class="stat-number" id="reposCount">0</div><div>Repositories</div></div>
+      <div class="stat-card"><div class="stat-number" id="starsCount">0</div><div>Total Stars</div></div>
+      <div class="stat-card"><div class="stat-number" id="followers">0</div><div>Followers</div></div>
     </div>
 
-    <!-- About -->
     <div class="about">
       I'm currently a <strong>2nd year B.Tech Computer Science student</strong>, passionate about software development, DSA, and cybersecurity. Alongside my studies, I actively work on freelance projects, continuously building my skills through real-world experience.
     </div>
 
-    <!-- Skills with Progress Bars -->
     <h2>Skills</h2>
     <div class="skills-grid">
       <div class="skill-item">
         <i class="fas fa-shield-alt skill-icon"></i>
         <div class="skill-info">
           <h3>Cybersecurity</h3>
-          <div class="progress-bar"><div class="progress" style="width: 92%"></div></div>
+          <div class="progress-bar"><div class="progress" data-width="92"></div></div>
         </div>
       </div>
       <div class="skill-item">
         <i class="fab fa-python skill-icon"></i>
         <div class="skill-info">
           <h3>Python</h3>
-          <div class="progress-bar"><div class="progress" style="width: 88%"></div></div>
+          <div class="progress-bar"><div class="progress" data-width="88"></div></div>
         </div>
       </div>
       <div class="skill-item">
         <i class="fab fa-linux skill-icon"></i>
         <div class="skill-info">
           <h3>Linux</h3>
-          <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          <div class="progress-bar"><div class="progress" data-width="85"></div></div>
         </div>
       </div>
       <div class="skill-item">
         <i class="fas fa-network-wired skill-icon"></i>
         <div class="skill-info">
           <h3>Network Security</h3>
-          <div class="progress-bar"><div class="progress" style="width: 78%"></div></div>
+          <div class="progress-bar"><div class="progress" data-width="78"></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Certifications -->
     <h2>Certifications</h2>
     <div class="certs-grid">
       <div class="cert-card"><h3>CompTIA Security+</h3><p>CompTIA • 2024</p></div>
@@ -281,7 +273,6 @@
       <div class="cert-card"><h3>TryHackMe Learning Paths</h3><p>TryHackMe • 2023</p></div>
     </div>
 
-    <!-- Projects -->
     <h2>Projects</h2>
     <div class="repos-grid" id="reposGrid">
       <div style="grid-column:1/-1;text-align:center;padding:5rem;color:#94a3b8;">
@@ -296,11 +287,11 @@
   <script>
     const username = "shortageofname";
 
-    // FIXED: Theme toggle works on FIRST click
+    // Theme Toggle - 100% FIXED
     const themeBtn = document.getElementById('themeToggle');
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme === 'light') {
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
       themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
     } else {
@@ -320,49 +311,58 @@
       }
     });
 
-    // Animate progress bars when in view
-    const observer = new IntersectionObserver((entries) => {
+    // Animate progress bars when section is visible
+    const progressObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.querySelectorAll('.progress').forEach(bar => {
-            bar.style.width = bar.parentElement.nextElementSibling ? '0%' : bar.style.width;
-            setTimeout(() => bar.style.width = bar.style.width || '85%', 200);
+            const width = bar.getAttribute('data-width') + '%';
+            setTimeout(() => bar.style.width = width, 300);
           });
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.6 });
 
-    observer.observe(document.querySelector('.skills-grid'));
+    progressObserver.observe(document.querySelector('.skills-grid'));
 
-    // Load GitHub Data
-    async function load() {
-      const [user, repos] = await Promise.all([
-        fetch(`https://api.github.com/users/${username}`).then(r => r.json()),
-        fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(r => r.json())
-      ]);
+    // Load GitHub Data - 100% WORKING
+    async function loadGitHubData() {
+      try {
+        const userRes = await fetch(`https://api.github.com/users/${username}`);
+        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
 
-      document.getElementById('reposCount').textContent = user.public_repos;
-      document.getElementById('followers').textContent = user.followers;
-      document.getElementById('starsCount').textContent = repos.reduce((a,r) => a + r.stargazers_count, 0);
+        const user = await userRes.json();
+        const repos = await reposRes.json();
 
-      const grid = document.getElementById('reposGrid');
-      grid.innerHTML = '';
-      repos.filter(r => !r.fork)
-        .sort((a,b) => b.stargazers_count - a.stargazers_count)
-        .forEach(r) => {
-          grid.innerHTML += `
-            <div class="repo-card">
-              <a href="${r.html_url}" target="_blank" class="repo-name">${r.name}</a>
-              <p style="margin:1rem 0;color:#94a3b8;">${r.description || "No description"}</p>
-              <div style="font-size:0.9rem;color:#64748b;">
-                ${r.language ? `<span><i class="fas fa-circle" style="color:${r.language==='Python'?'#3572A5':'#f1e05a'}"></i> ${r.language}</span>` : ''}
-                <span style="margin-left:1rem;"><i class="fas fa-star"></i> ${r.stargazers_count}</span>
+        // Update stats
+        document.getElementById('reposCount').textContent = user.public_repos;
+        document.getElementById('followers').textContent = user.followers;
+        document.getElementById('starsCount').textContent = repos.reduce((a, r) => a + r.stargazers_count, 0);
+
+        // Load projects
+        const grid = document.getElementById('reposGrid');
+        grid.innerHTML = '';
+        repos
+          .filter(r => !r.fork)
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+          .forEach(r => {
+            grid.innerHTML += `
+              <div class="repo-card">
+                <a href="${r.html_url}" target="_blank" class="repo-name">${r.name}</a>
+                <p style="margin:1rem 0;color:#94a3b8;">${r.description || "No description"}</p>
+                <div style="font-size:0.9rem;color:#64748b;">
+                  ${r.language ? `<span><i class="fas fa-circle" style="color:${r.language==='Python'?'#3572A5':'#f1e05a'}"></i> ${r.language}</span>` : ''}
+                  <span style="margin-left:1rem;"><i class="fas fa-star"></i> ${r.stargazers_count}</span>
+                </div>
               </div>
-            </div>
-          `;
-        });
+            `;
+          });
+      } catch (err) {
+        document.getElementById('reposGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:4rem;">Failed to load projects</div>';
+      }
     }
-    load();
+
+    loadGitHubData();
   </script>
 </body>
 </html>
