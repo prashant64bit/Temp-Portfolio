@@ -13,23 +13,25 @@
       --card: rgba(30,30,60,0.7);
       --border: rgba(139,92,246,0.2);
       --accent: #c084fc;
+      --skill-bg: rgba(70,50,120,.45);
+      --progress-bg: rgba(255,255,255,.15);
     }
     [data-theme="light"] {
       --bg: #f8fafc;
       --text: #1e293b;
-      --card: rgba(255,255,255,0.9);
+      --card: rgba(255,255,255,0.95);
       --border: rgba(0,0,0,0.1);
       --accent: #8b5cf6;
+      --skill-bg: rgba(139, 92, 246, 0.15);   /* Light purple tint */
+      --progress-bg: rgba(139, 92, 246, 0.2); /* Subtle purple track */
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); transition:all .4s; }
     
     header {
-      padding:6rem 2rem 4rem;
-      text-align:center;
+      padding:6rem 2rem 4rem; text-align:center;
       background:linear-gradient(-45deg,#6366f1,#8b5cf6,#a855f7,#d946ef);
-      background-size:400% 400%;
-      animation:grad 16s ease infinite;
+      background-size:400% 400%; animation:grad 16s ease infinite;
     }
     @keyframes grad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     
@@ -39,7 +41,7 @@
     .resume-btn{background:#fff;color:#8b5cf6;padding:16px 40px;border-radius:50px;font-weight:700;font-size:1.1rem;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:.3s;display:inline-block}
     .resume-btn:hover{transform:translateY(-5px)}
     
-    .top-bar{position:fixed;top:24px;right:24px;display:flex;gap:16px;background:rgba(0,0,0,.3);backdrop-filter:blur(16px);padding:14px 20px;border-radius:50px;border::1px solid rgba(255,255,255,.15);z-index:1000}
+    .top-bar{position:fixed;top:24px;right:24px;display:flex;gap:16px;background:rgba(0,0,0,.3);backdrop-filter:blur(16px);padding:14px 20px;border-radius:50px;border:1px solid rgba(255,255,255,.15);z-index:1000}
     .top-bar a,.top-bar button{color:#fff;font-size:1.4rem;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:none;border:none;cursor:pointer;transition:.3s}
     .top-bar a:hover,.top-bar button:hover{background:rgba(255,255,255,.2);transform:scale(1.2)}
     
@@ -52,13 +54,36 @@
     .about{background:var(--card);backdrop-filter:blur(12px);padding:2.5rem;border-radius:24px;border:1px solid var(--border);text-align:center;font-size:1.15rem;line-height:1.8;max-width:900px;margin:0 auto 5rem}
     
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.8rem;max-width:1000px;margin:0 auto 5rem}
-    .skill-card{background:rgba(70,50,120,.45);backdrop-filter:blur(14px);border-radius:20px;padding:1.8rem;display:flex;align-items:center;gap:1.2rem;border:1px solid rgba(139,92,246,.25);transition:transform .3s}
-    .skill-card:hover{transform:translateY(-6px)}
-    .skill-card i{font-size:2.6rem;color:#c084fc;flex-shrink:0}
+    .skill-card{
+      background:var(--skill-bg);
+      backdrop-filter:blur(14px);
+      border-radius:20px;
+      padding:1.8rem;
+      display:flex;
+      align-items:center;
+      gap:1.2rem;
+      border:1px solid var(--border);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .skill-card:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(139,92,246,.2)}
+    .skill-card i{font-size:2.6rem;color:var(--accent);flex-shrink:0}
     .skill-info{flex:1;display:flex;flex-direction:column;gap:.6rem}
-    .skill-info h3{color:#fff;margin:0;font-size:1.15rem;font-weight:600}
-    .progress-container{height:12px;background:rgba(255,255,255,.15);border-radius:10px;overflow:hidden;width:100%}
-    .progress-fill{height:100%;background:linear-gradient(90deg,#c084fc,#e879f9);border-radius:10px;width:0%;transition:width 2.2s cubic-bezier(.65,0,.35,1)}
+    .skill-info h3{color:var(--text);margin:0;font-size:1.15rem;font-weight:600}
+    .progress-container{
+      height:12px;
+      background:var(--progress-bg);
+      border-radius:10px;
+      overflow:hidden;
+      width:100%;
+      border:1px solid rgba(139,92,246,.2);
+    }
+    .progress-fill{
+      height:100%;
+      background:linear-gradient(90deg,var(--accent),#e879f9);
+      border-radius:10px;
+      width:0%;
+      transition:width 2.2s cubic-bezier(.65,0,.35,1);
+    }
     
     .certificates-box{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:24px;padding:2rem 2.5rem;max-width:900px;margin:0 auto 5rem}
     .cert-list{list-style:none}
@@ -124,16 +149,20 @@
     </div>
 
     <h2>Projects</h2>
-    <div class="repos-grid" id="projects"></div>
+    <div class="repos-grid" id="projects">
+      <div style="grid-column:1/-1;text-align:center;padding:5rem;color:#94a3b8">
+        <i class="fas fa-spinner fa-spin fa-3x"></i><br><br>Loading projects...
+      </div>
+    </div>
   </div>
 
   <footer id="yearFooter">© Prashant Thakur • Built with passion</footer>
 
   <script>
-    // made by prashant - nov 2025
+    // made by prashant - 2025
     const user = "shortageofname";
     
-    // theme thing
+    // theme toggle
     const btn = document.getElementById('toggleTheme');
     if(localStorage.theme === 'light'){
       document.documentElement.setAttribute('data-theme','light');
@@ -151,30 +180,30 @@
       }
     };
 
-    // year update india time
-    const indiaTime = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
-    document.getElementById('yearFooter').innerHTML = `© ${new Date(indiaTime).getFullYear()} Prashant Thakur • Built with passion`;
+    // dynamic year (India)
+    const india = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+    document.getElementById('yearFooter').innerHTML = `© ${new Date(india).getFullYear()} Prashant Thakur • Built with passion`;
 
-    // progress bars
-    const observer = new IntersectionObserver(e => {
+    // skill bars animation
+    const obs = new IntersectionObserver(e => {
       if(e[0].isIntersecting){
-        document.querySelectorAll('.progress-fill').forEach(bar => {
-          bar.style.width = bar.dataset.p + '%';
+        document.querySelectorAll('.progress-fill').forEach(b => {
+          b.style.width = b.dataset.p + '%';
         });
       }
     }, {threshold: 0.6});
-    observer.observe(document.querySelector('.skills-grid'));
+    obs.observe(document.querySelector('.skills-grid'));
 
-    // github stuff
-    async function getGitHub(){
+    // github data
+    async function loadGit(){
       try{
         const [u,r] = await Promise.all([
           fetch(`https://api.github.com/users/${user}`),
           fetch(`https://api.github.com/users/${user}/repos?per_page=100`)
         ].map(p => p.then(res => res.json())));
         
-        document.getElementById('repoNum').textContent = u.public_repos;
-        document.getElementById('followNum').textContent = u.followers;
+        document.getElementById('repoNum').textContent = u.public_repos || 0;
+        document.getElementById('followNum').textContent = u.followers || 0;
         document.getElementById('starNum').textContent = r.reduce((a,b)=>a+(b.stargazers_count||0),0);
 
         const grid = document.getElementById('projects');
@@ -191,11 +220,11 @@
              </div>
            </div>`;
          });
-      }catch(err){
-        document.getElementById('projects').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:#94a3b8">GitHub busy rn, try later</div>';
+      }catch{
+        document.getElementById('projects').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:#94a3b8">GitHub busy, try later</div>';
       }
     }
-    getGitHub();
+    loadGit();
   </script>
 </body>
 </html>
