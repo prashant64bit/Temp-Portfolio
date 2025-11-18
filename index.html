@@ -1,149 +1,316 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Test Site — Clean & Modern</title>
-  <meta name="description" content="Single-file modern test site for demos, portfolios, and experiments." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>shortageofname | Portfolio</title>
+  <meta name="description" content="Portfolio of shortageofname - Full-Stack Developer, Open Source Enthusiast" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7dd3fc; --glass: rgba(255,255,255,0.06);
-      --radius:14px; --maxw:1100px; --ff:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    :root {
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --primary: #3b82f6;
+      --shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:var(--ff);background:linear-gradient(180deg,#071129 0%, #071024 60%);color:#e6eef6}
-    .wrap{max-width:var(--maxw);margin:36px auto;padding:28px}
-
-    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .logo{display:flex;align-items:center;gap:12px}
-    .mark{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:grid;place-items:center;color:#022; font-weight:700}
-
-    nav{display:flex;gap:12px}
-    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px}
-    nav a.primary{background:var(--glass);color:var(--accent)}
-
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(2,8,23,0.6);}
-
-    h1{margin:0;font-size:28px;line-height:1.05}
-    p.lead{color:var(--muted);margin-top:10px}
-
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-    .feat{padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-    .feat h4{margin:0 0 6px 0}
-
-    .preview{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(125,211,252,0.06), rgba(125,211,252,0.02));border:1px solid rgba(125,211,252,0.12)}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    .btn.cta{background:linear-gradient(90deg,#7dd3fc,#60a5fa);color:#022}
-
-    .grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
-    .small{font-size:13px;color:var(--muted)}
-
-    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
-
-    /* responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .features,.grid-cards{grid-template-columns:repeat(2,1fr)}
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card: #1e293b;
+      --border: #334155;
+      --primary: #60a5fa;
+      --shadow: 0 10px 15px -3px rgba(0,0,0,0.4);
     }
-    @media (max-width:560px){
-      .features,.grid-cards{grid-template-columns:1fr}
-      nav{display:none}
-      .mark{width:42px;height:42px}
-      .wrap{padding:18px;margin:18px}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 100px;
+      background: var(--bg);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; position: relative; z-index: 1; }
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    h1 { font-size: 2.8rem; margin: 0.5rem 0; }
+    .bio { font-size: 1.3rem; opacity: 0.9; max-width: 700px; }
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .social-links a {
+      color: white;
+      font-size: 1.8rem;
+      transition: transform 0.2s;
+    }
+    .social-links a:hover { transform: translateY(-3px); }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+    .theme-toggle:hover { transform: scale(1.1); }
+
+    main { padding: 4rem 0; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .stat-card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-8px); }
+    .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
+    .stat-label { color: #64748b; font-size: 0.9rem; margin-top: 0.5rem; }
+
+    .repos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .repo-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      height: fit-content;
+    }
+    .repo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    .repo-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .repo-name:hover { text-decoration: underline; }
+    .repo-desc {
+      color: #64748b;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+    .repo-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .language-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .loading, .error {
+      text-align: center;
+      padding: 4rem;
+      font-size: 1.2rem;
+      color: #94a3b8;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #64748b;
+      font-size: 0.9rem;
     }
 
-    /* small interactive touches */
-    .card:hover{transform:translateY(-4px);transition:transform .18s ease}
-    a{transition:opacity .12s}
-    a:hover{opacity:.9}
-
-    /* tiny form */
-    form{display:flex;gap:8px;margin-top:12px}
-    input[type=text]{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    input[type=submit]{padding:10px 12px;border-radius:10px;border:0;background:var(--accent);color:#022;font-weight:700}
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .bio { font-size: 1.1rem; }
+      .avatar { width: 120px; height: 120px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">
-        <div class="mark">TS</div>
-        <div>
-          <div style="font-weight:700">TestSite</div>
-          <div class="small">Modern single-file demo</div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <header>
+    <div class="container">
+      <div class="profile">
+        <img id="avatar" class="avatar" src="" alt="Profile" />
+        <h1 id="name">shortageofname</h1>
+        <p class="bio" id="bio">Loading bio...</p>
+        <div class="social-links">
+          <a href="https://github.com/shortageofname" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/shortageofname" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/in/shortageofname" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#preview" class="primary">Preview</a>
-        <a href="#download">Download</a>
-      </nav>
-    </header>
+    </div>
+  </header>
 
-    <section class="hero">
-      <div class="card">
-        <h1>Good-looking test site — single file</h1>
-        <p class="lead">Minimal, responsive, and optimised for quick demos. Use it for prototyping, portfolios, or UI tests.</p>
-
-        <div class="features" id="features">
-          <div class="feat"><h4>Responsive</h4><div class="small">Grid-first layout, mobile-first breakpoints.</div></div>
-          <div class="feat"><h4>Lightweight</h4><div class="small">No external deps, under 12KB CSS + HTML.</div></div>
-          <div class="feat"><h4>Accessible</h4><div class="small">Semantic markup, clear contrast, reduced motion safe.</div></div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card small"><strong>Card A</strong><div class="small">Use this block for quick notes, stats, or actions.</div></div>
-          <div class="card small"><strong>Card B</strong><div class="small">Swap in images or embed previews inside.</div></div>
-          <div class="card small"><strong>Card C</strong><div class="small">Forms, buttons and microinteractions.</div></div>
-        </div>
-
-        <form onsubmit="event.preventDefault();alert('Demo form submitted');">
-          <input type="text" placeholder="Your email or note" aria-label="input" />
-          <input type="submit" value="Submit" />
-        </form>
+  <div class="container">
+    <main>
+      <div class="stats" id="stats">
+        <div class="stat-card"><div class="stat-number" id="reposCount">-</div><div class="stat-label">Repositories</div></div>
+        <div class="stat-card"><div class="stat-number" id="starsCount">-</div><div class="stat-label">Total Stars</div></div>
+        <div class="stat-card"><div class="stat-number" id="forksCount">-</div><div class="stat-label">Total Forks</div></div>
+        <div class="stat-card"><div class="stat-number" id="followers">-</div><div class="stat-label">Followers</div></div>
       </div>
 
-      <aside class="preview card" id="preview">
-        <h3 style="margin-top:0">Live preview</h3>
-        <div style="font-weight:700;font-size:18px">Quick stats</div>
-        <ul class="small" style="margin:8px 0 0 18px">
-          <li>Initial HTML: ~6 KB</li>
-          <li>CSS inline: ~9 KB</li>
-          <li>Scripts: none</li>
-        </ul>
-        <hr style="opacity:.06;margin:12px 0">
-        <a class="btn cta" href="#download" onclick="copyHtml()">Copy HTML</a>
-        <div style="margin-top:10px" class="small">Tip: run <code>python -m http.server</code> to preview locally.</div>
-      </aside>
-    </section>
-
-    <section class="card" style="margin-top:22px" id="download">
-      <h3 style="margin:0">Download / Use</h3>
-      <p class="small">Save this file as <code>index.html</code> and open in any browser. Designed to be forked and extended.</p>
-      <details style="margin-top:8px" open>
-        <summary class="small">What to change</summary>
-        <ul class="small">
-          <li>Colors: modify <code>--accent</code> and background in <code>:root</code>.</li>
-          <li>Fonts: add a link to Google Fonts if needed.</li>
-          <li>Analytics: drop a small script inside <code>&lt;head&gt;</code>.</li>
-        </ul>
-      </details>
-    </section>
-
-    <footer>
-      Built for quick demos — edit freely. © TestSite
-    </footer>
+      <h2 style="font-size: 2rem; margin: 3rem 0 2rem; text-align:center;">My Projects</h2>
+      <div class="repos-grid" id="reposGrid">
+        <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading repositories...</div>
+      </div>
+    </main>
   </div>
 
+  <footer>
+    <p>Made with ❤️ by <strong>shortageofname</strong> • Powered by GitHub API</p>
+  </footer>
+
   <script>
-    function copyHtml(){
-      try{
-        navigator.clipboard.writeText(document.documentElement.outerHTML).then(()=>{
-          alert('HTML copied to clipboard');
-        });
-      }catch(e){alert('Copy failed — view source to copy manually')}
+    const GITHUB_USERNAME = "shortageofname";
+    const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}`;
+    const REPOS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      }
+    });
+
+    // Language colors
+    const languageColors = {
+      JavaScript: "#f1e05a", TypeScript: "#2b7489", Python: "#3572A5",
+      HTML: "#e34c26", CSS: "#563d7c", Java: "#b07219", Go: "#00ADD8",
+      Rust: "#dea584", React: "#61dafb", Vue: "#41b883", Svelte: "#ff3e00"
+    };
+
+    async function fetchGitHubData() {
+      try {
+        const [userRes, reposRes] = await Promise.all([
+          fetch(API_URL), fetch(REPOS_URL)
+        ]);
+
+        const user = await userRes.json();
+        const repos = await reposRes.json();
+
+        // Update profile
+        document.getElementById('avatar').src = user.avatar_url;
+        document.getElementById('name').textContent = user.name || user.login;
+        document.getElementById('bio').textContent = user.bio || "No bio available.";
+        document.getElementById('followers').textContent = user.followers;
+
+        // Update stats
+        document.getElementById('reposCount').textContent = user.public_repos;
+        const totalStars = repos.reduce((acc, r) => acc + r.stargazers_count, 0);
+        const totalForks = repos.reduce((acc, r) => acc + r.forks_count, 0);
+        document.getElementById('starsCount').textContent = totalStars;
+        document.getElementById('forksCount').textContent = totalForks;
+
+        // Render repos
+        const reposGrid = document.getElementById('reposGrid');
+        reposGrid.innerHTML = '';
+
+        if (repos.length === 0) {
+          reposGrid.innerHTML = '<div class="loading">No public repositories found.</div>';
+          return;
+        }
+
+        repos
+          .filter(repo => !repo.fork)
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+          .forEach(repo => {
+            const lang = repo.language || "Other";
+            const color = languageColors[lang] || "#888";
+
+            const card = document.createElement('div');
+            card.className = 'repo-card';
+            card.innerHTML = `
+              <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
+              <p class="repo-desc">${repo.description || "No description"}</p>
+              <div class="repo-meta">
+                ${repo.language ? `<span><span class="language-color" style="background:${color}"></span> ${lang}</span>` : ''}
+                <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+              </div>
+            `;
+            reposGrid.appendChild(card);
+          });
+
+      } catch (err) {
+        document.getElementById('reposGrid').innerHTML = 
+          `<div class="error">Failed to load data. GitHub API rate limit may be exceeded. Try again later.</div>`;
+        console.error(err);
+      }
+    }
+
+    // Load data
+    fetchGitHubData();
   </script>
 </body>
 </html>
