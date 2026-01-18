@@ -4,7 +4,7 @@ A clean, minimalist, personal portfolio. Currently under active development.
 
 ## Live Demo
 
-Live: https://prashant.us.kg
+Live: https://prashantthakur.is-a.dev
 
 ## Features
 
